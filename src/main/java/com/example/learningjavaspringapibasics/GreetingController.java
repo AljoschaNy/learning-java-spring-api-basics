@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class GreetingController {
@@ -34,5 +35,14 @@ public class GreetingController {
     @GetMapping("/messages")
     public List<Message> getMessages() {
         return messages;
+    }
+
+    @DeleteMapping("/messages/{id}")
+    public void removeMessage(@PathVariable String id) {
+        for(Message message: messages) {
+            if(message.getId().equals(id)) {
+                messages.remove(message);
+            }
+        }
     }
 }
