@@ -21,10 +21,14 @@ public class GreetingController {
         return "Hello, " + name +"!";
     }
 
-    @PostMapping("/messages")
-    public ArrayList<Message> addMessage(@RequestParam String id, @RequestParam String name, @RequestParam String message) {
+    /*@PostMapping("/messages")
+    public void addMessage(@RequestParam String id, @RequestParam String name, @RequestParam String message) {
         messages.add(new Message(id,name,message));
-        return messages;
+    }*/
+
+    @PostMapping("/messages")
+    public void addMessage(@RequestBody Message message) {
+        messages.add(message);
     }
 
     @GetMapping("/messages")
